@@ -65,4 +65,4 @@
 # Ignore master key for decrypting credentials and more.
 /backend/config/master.key
 /backend/vendor/bundle
-/db
+/tmp/pgdata
