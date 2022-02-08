@@ -10,7 +10,7 @@ RUN gem install bundler --version "$BUNDLE_VERSION"
 RUN mkdir $APP
 WORKDIR $APP
 
-COPY /backend/Gemfile* $APP/
+COPY Gemfile* $APP/
 RUN bundle install
 
 COPY . $APP/
