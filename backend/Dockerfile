@@ -1,10 +1,10 @@
-FROM ruby:3.0.1
+FROM ruby:3.1.0
 
 ENV BUNDLE_VERSION 2.3.3
 ENV APP /usr/src/app
 
 # netcat is for nc command
-RUN apt-get update && apt-get install -y netcat && RUN apt-get install -y vim
+RUN apt update && apt install -y netcat && apt install -y vim
 RUN gem install bundler --version "$BUNDLE_VERSION" 
 
 RUN mkdir $APP

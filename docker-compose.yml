@@ -1,7 +1,38 @@
 version: "3"
 
 services:
-  frontend:
+  db:
+    image: postgres:13-alpine3.15
+    ports:
+      - "3307:3306"
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      PGDATA: /var/lib/postgresql/data/pgdata
+
+    volumes:
+      - ./db/postgres:/var/lib/postgresql/data
+      - ./db/logs:/var/log
+  api:
+    build:
+      context: backend
+    volumes:
+      - ./backend:/usr/src/app
+      - ./backend/vendor/bundle:/usr/local/bundle
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    stdin_open: true
+    tty: true
+    environment:
+      DB_USERNAME: root
+      DB_PASSWORD: password
+      DB_PORT: 3306
+      DB_HOST: db
+      RAILS_MAX_THREADS: 5
+      RAILS_ENV: local
+  next:
     build:
       context: frontend
     volumes:

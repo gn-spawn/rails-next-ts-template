@@ -1,12 +1,5 @@
 #!/bin/bash -i
 
-# Wait for DB
-until nc -z -v -w30 $DB_HOST $DB_PORT; do
- echo 'Waiting for DB...'
- sleep 1
-done
-echo "DB is up and running!"
-
 # If the database exists, migrate. Otherwise setup (create and migrate)
 bundle exec rails db:migrate 2>/dev/null || bundle exec rails db:create db:migrate db:seed
 
