@@ -23,6 +23,6 @@ module Backend
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
-    config.host << "duel-result.onrender.com"
+    config.hosts << "duel-result.onrender.com"
   end
 end
